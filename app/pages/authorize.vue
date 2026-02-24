@@ -1,8 +1,10 @@
 <template>
-    {{ code }}
+    you are being redirected
 </template>
 
 <script setup lang="ts">
+import type UserInfo from '~/types/UserInfo'
+
 // interfaces
 interface User {
     web_token:string
@@ -13,11 +15,6 @@ interface User {
 interface AuthResponse {
     success:boolean,
     user:User
-}
-
-interface UserInfo {
-    username:string
-    avatar:string
 }
 
 // varibles

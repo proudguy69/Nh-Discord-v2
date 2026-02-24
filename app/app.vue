@@ -1,20 +1,17 @@
 <template>
-  <div v-if="userInfo.username">
-    <span>{{ userInfo.username }}</span>
-    <img :src="userInfo.avatar" class="h-[64px]">
-  </div>
   <UApp>
-    <UButton :to="authUri" label="discord auth"/>
+    <Navigation />
     <NuxtPage />
   </UApp>
 </template>
 
 <script setup lang="ts">
+import Navigation from './components/Navigation.vue'
+import type UserInfo from './types/UserInfo'
+
+
 // interfaces
-interface UserInfo {
-    username:string|undefined
-    avatar:string|undefined
-}
+
 
 // varibles
 const authUri = {
