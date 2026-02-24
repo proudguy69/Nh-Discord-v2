@@ -25,4 +25,8 @@ logs
 
 # python shit
 venv*
-cache*
+*cache*
+__pycache__/
+*.pyc
+
+settings.py
