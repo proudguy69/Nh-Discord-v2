@@ -10,8 +10,8 @@
         </template>
 
         <template #right>
-            <UButton v-if="!userInfo.username" icon="ic:baseline-discord" class="bg-[#5865F2] text-[#E0E3FF]">Login</UButton>
-            <UDropdownMenu :items="userOptions">
+            <UButton v-if="!userInfo.username" icon="ic:baseline-discord" :to="authUri" class="bg-[#5865F2] text-[#E0E3FF] hover:bg-[#E0E3FF] hover:text-black">Login</UButton>
+            <UDropdownMenu v-else :items="userOptions">
                 <UButton :avatar="{src:userInfo.avatar}" variant="subtle" color="neutral"  >{{ userInfo.username }}</UButton>
             </UDropdownMenu>
             
@@ -27,6 +27,7 @@ import type UserInfo from '~/types/UserInfo'
 
 // injects
 const userInfo = inject<Ref<UserInfo>>('userInfo')!
+const authUri = inject('authUri')!
 
 // refs
 

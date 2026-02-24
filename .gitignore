@@ -30,3 +30,5 @@ __pycache__/
 *.pyc
 
 settings.py
+*database*
+database.sqlite3

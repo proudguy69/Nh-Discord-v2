@@ -29,6 +29,7 @@ const userInfo = ref<UserInfo>({
 })
 
 // provides
+provide('authUri', authUri)
 provide('appUri', appUri)
 provide('userInfo', userInfo)
 

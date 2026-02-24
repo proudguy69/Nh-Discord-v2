@@ -18,7 +18,9 @@ onMounted(async () => {
         username: undefined,
         avatar: undefined
     }
-    const token = localStorage.getItem('token')!
+    const token = localStorage.getItem('web_token')!
+
+    console.log(token)
 
     const response = await fetch(`${appUri}/logout`, {
         method: 'GET',

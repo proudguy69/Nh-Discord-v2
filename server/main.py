@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Header
 from tortoise.contrib.fastapi import register_tortoise
+from tortoise.exceptions import IntegrityError
 from fastapi.middleware.cors import CORSMiddleware
 from aiohttp import ClientSession, BasicAuth
 from settings import CLIENT_ID, CLIENT_SECRET
@@ -91,24 +92,30 @@ async def authorize(code):
     expires = int(time.time() + expires_in)
     avatar = f'https://cdn.discordapp.com/avatars/{d_user_id}/{avatar_hash}.webp'
     web_token = secrets.token_hex()
-    
-    await User.create(
-        web_token=web_token,
-        access_token=access_token,
-        refresh_token=refresh_token,
-        expires=expires,
-        username=username,
-        user_id=d_user_id,
-        avatar=avatar
-        )
+    try:
+        await User.create(
+            web_token=web_token,
+            access_token=access_token,
+            refresh_token=refresh_token,
+            expires=expires,
+            username=username,
+            user_id=d_user_id,
+            avatar=avatar
+            )
+    except IntegrityError:
+        return success(False, 'User already exists')
+        
     user = await User.get(web_token=web_token).values('web_token', 'username', 'avatar')
     
     return success(data={'user': user})
 
 @app.get('/logout')
 async def logout(authorize:str=Header(None)):
+    print(authorize)
     if not authorize: return success(False, 'No token in header')
     user = await User.get_or_none(web_token=authorize)
+    print(user)
     if not user: return success(False, 'invalid token in header')
     await user.delete()
+    await user.save()
     return success()
