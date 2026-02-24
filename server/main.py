@@ -104,4 +104,11 @@ async def authorize(code):
     user = await User.get(web_token=web_token).values('web_token', 'username', 'avatar')
     
     return success(data={'user': user})
-    
+
+@app.get('/logout')
+async def logout(authorize:str=Header(None)):
+    if not authorize: return success(False, 'No token in header')
+    user = await User.get_or_none(web_token=authorize)
+    if not user: return success(False, 'invalid token in header')
+    await user.delete()
+    return success()
