@@ -27,7 +27,7 @@ onMounted(async () => {
         headers: {'Authorize': token}
     })
 
-    localStorage.removeItem('token')
+    localStorage.removeItem('web_token')
     localStorage.removeItem('avatar')
     localStorage.removeItem('username')
 

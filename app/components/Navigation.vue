@@ -47,6 +47,10 @@ const items = ref<NavigationMenuItem[]>([
     {
         label: 'Privacy'
     },
+    {
+        label: 'blog',
+        to: '/blog'
+    }
 ])
 
 </script>

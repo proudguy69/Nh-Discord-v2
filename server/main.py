@@ -119,3 +119,13 @@ async def logout(authorize:str=Header(None)):
     await user.delete()
     await user.save()
     return success()
+
+@app.get('/permission')
+async def permission(authorize:str=Header(None)):
+    if not authorize: return success(False, 'No token in header')
+    user = await User.get_or_none(web_token=authorize)
+    if not user: return success(False, 'invalid token in header')
+
+    if user.user_id != 1267552151454875751:
+        return success(False)
+    return success(True)
