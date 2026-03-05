@@ -12,17 +12,18 @@ import secrets
 uri = {
     "dev": "http://localhost:3001",
     "prod": "https://nhdiscord.com"
-}.get('dev')
+}.get('prod')
 
 redirect_uri = {
-    "dev": 'http://localhost:3001/authorize'
-}.get('dev')
+    "dev": 'http://localhost:3001/authorize',
+    "prod": 'https://nhdiscord.com/authorize'
+}.get('prod')
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['http://localhost:3001'],
+    allow_origins=[uri],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

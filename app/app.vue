@@ -15,12 +15,14 @@ import type UserInfo from './types/UserInfo'
 
 // varibles
 const authUri = {
-  dev: 'https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fauthorize&scope=identify+guilds+guilds.join+email'
-}.dev
+  dev: 'https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fauthorize&scope=identify+guilds+guilds.join+email',
+  prod: 'https://discord.com/oauth2/authorize?client_id=1304965391507914782&response_type=code&redirect_uri=https%3A%2F%2Fnhdiscord.com%2Fauthorize&scope=identify+guilds+guilds.join+email'
+}.prod
 
 const appUri = {
-  dev: 'http://localhost:8000'
-}.dev
+  dev: 'http://localhost:8000',
+  prod: 'https://api.nhdiscord.com'
+}.prod
 
 // refs
 const userInfo = ref<UserInfo>({
