@@ -129,3 +129,7 @@ async def permission(authorize:str=Header(None)):
     if user.user_id != 1267552151454875751:
         return success(False)
     return success(True)
+
+@app.get('/')
+async def test():
+    return "test"

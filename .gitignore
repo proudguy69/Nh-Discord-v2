@@ -32,3 +32,5 @@ __pycache__/
 settings.py
 *database*
 database.sqlite3
+
+.vscode

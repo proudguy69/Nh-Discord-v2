@@ -9,3 +9,10 @@ class User(Model):
     username = fields.CharField(max_length=60)
     user_id = fields.IntField(unique=True)
     avatar = fields.CharField(max_length=256)
+
+class Review(Model):
+    id = fields.IntField(primary_key=True)
+    rating = fields.IntField()
+    note = fields.CharField(max_length=80)
+    user = fields.ForeignKeyField('models.User')
+    
